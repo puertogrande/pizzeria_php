@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" type="text/css" href="assets/css/formulario.css">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <h2> Nuevo Oferta </h2>
+<?=Utils::mostrarError('register'); ?>
+<?php 
+    if($id !=null){
+       
+        $id=$id;
+        $consulta=$oferta_seleccionada->fetchObject();
+        $valor_titulo=$consulta->titulo;
+        $valor_imagen=$consulta->imagen;
+        $valor_descripcion=$consulta->descripcion;
+        $ruta="uploads/img/".$valor_imagen;
+        //introducir estos valores en los value
+        echo '<form action ="index.php?c=Ofertas&a=ModificarOferta&id='.$id.'" method="POST" enctype="multipart/form-data">
+        <label for="titulo">Titulo</label>
+        <input type="text" name="titulo"  value="'.$valor_titulo.'" >
+        <label for="imagen">Imagen</label>
+        <img src='.$ruta.'></img>
+        <input type="file" name="imagen" id="imagen" value="'.$valor_titulo.'">
+        <label for="descripcion">Descripcion</label>
+        <input type="descripcion" name="descripcion" value="'.$valor_descripcion.'" required>
+        <input type="submit" name="submit1" required>
+    </form>';  
+    }
+    else{
+        echo'<form action ="index.php?c=Ofertas&a=crearOferta" method="POST" enctype="multipart/form-data">
+        <label for="titulo">Titulo</label>
+        <input type="text" name="titulo" required>
+        <label for="imagen">Imagen</label>
+        <input type="file" name="imagen" id="imagen" required>
+        <label for="descripcion">Descripcion</label>
+        <input type="descripcion" name="descripcion" required>
+        <input type="submit" name="submit1" required>
+    </form>';
+    }
+    ?>
+    </body>
+

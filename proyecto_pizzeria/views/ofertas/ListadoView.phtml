@@ -1,0 +1,24 @@
+
+<div class="ofertas">
+<h1> Listado de todas las ofertas </h1>
+
+<?php
+require_once 'Controllers/OfertasController.php';
+
+//en imagen seria un source imagen mas el nombre de la imagen
+    while($oferta_particular = $todosOfertas->fetchObject() ){
+        $id=$oferta_particular->id;
+        echo "<h3>".$oferta_particular->titulo."</h3>";
+
+        $imagen=$oferta_particular->imagen;
+        $ruta="uploads/img/".$imagen;
+        echo "<img src='$ruta'></img>";
+        echo "<br><br>$oferta_particular->descripcion";
+       
+        echo '<a href="index.php?c=Ofertas&a=BorrarOferta&id=' . $id . '">Borrrar</a>';
+        echo '<a href="index.php?c=Ofertas&a=NuevaOferta&id=' . $id . '">Modificar</a>';
+        //echo '<a href="index.php?c=Usuarios&a=ver_entradas&id=' . $id . '">Ver entradas </a><br><br>';
+        
+    }
+?>
+</div>
